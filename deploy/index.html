@@ -663,11 +663,61 @@ footer {
   .quals-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .container, nav, .hero, .cta-wrap, footer { padding-left: 24px; padding-right: 24px; }
+  /* Nav */
+  nav { padding: 0 16px; height: 56px; }
+  nav .nav-link { display: none; } /* hide nav links on mobile, keep logo + CTA */
+  .nav-cta { padding: 7px 14px; font-size: 13px; }
+
+  /* Hero */
+  .container, .cta-wrap, footer { padding-left: 20px; padding-right: 20px; }
+  .hero { padding: 48px 0 40px; }
+  .hero-title { font-size: clamp(36px, 10vw, 52px); }
+  .hero-content { max-width: 100%; }
+  .hero-sub { max-width: 100%; font-size: 16px; }
+
+  /* All multi-column inline grids collapse to single column */
+  .mobile-stack { grid-template-columns: 1fr !important; }
+
+  /* Flag sticker — tiny on mobile, near the eyebrow */
+  .hero-sticker {
+    height: 60px;
+    top: -8px;
+    right: 0;
+  }
+
+  /* Grids */
   .why-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
+  .quals-grid { grid-template-columns: 1fr; }
   section { padding: 40px 0; }
-  .hero { padding: 80px 24px 72px; }
+
+  /* AI-first quote cards — override inline grid */
+  section [style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* AI-first 3 pillars — override inline grid */
+  section [style*="repeat(3,1fr)"],
+  div[style*="repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Culture / built different cards — override inline grid */
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Quote card attribution — keep row layout on small screens */
+  div[style*="display:flex"][style*="align-items:center"][style*="gap:16px"] {
+    flex-wrap: nowrap;
+  }
+
+  /* Footer */
+  footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
+  .footer-links { gap: 16px; }
 }
 </style>
 </head>
@@ -792,7 +842,7 @@ footer {
     <p class="section-eyebrow" style="color:var(--poppy);">Life at Klaviyo</p>
     <h2 class="section-title" style="color:var(--white);max-width:640px;">The role of the engineer is changing.<br>Here, you're <em style="font-style:italic;color:var(--poppy);">leading that change.</em></h2>
     <p style="font-size:17px;color:rgba(255,255,255,0.65);max-width:580px;line-height:1.7;margin-bottom:48px;">We're building for a future that's agentic and autonomous. That means engineers here move beyond just writing code — they focus on problem framing, system design, and orchestrating how everything comes together. AI accelerates the work, but decision-making still sits with the human.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+    <div class="mobile-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
 
       <!-- Quote 1 -->
       <div style="background:#262729;padding:40px 36px;display:flex;flex-direction:column;justify-content:space-between;">
@@ -825,7 +875,7 @@ footer {
     </div>
 
     <!-- AI-first pillars -->
-    <div style="margin-top:2px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+    <div class="mobile-stack" style="margin-top:2px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
       <div style="background:#1a1b1d;padding:28px 32px;border-top:3px solid var(--poppy);">
         <p style="font-family:var(--f-mono);font-size:11px;color:var(--poppy);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">Test tools</p>
         <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.65;">Try anything. See what works. AI experimentation is expected, not exceptional.</p>
@@ -848,7 +898,7 @@ footer {
     <p class="section-eyebrow">Culture</p>
     <h2 class="section-title">Built <em style="font-style:italic;">different.</em></h2>
     <p style="font-size:17px;color:rgba(29,30,32,0.6);max-width:520px;line-height:1.7;margin-bottom:48px;">This isn't for everyone. Here's who thrives.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+    <div class="mobile-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
 
       <div style="background:var(--white);padding:36px;">
         <p style="font-family:var(--f-headline);font-size:26px;font-weight:600;color:var(--charcoal);margin-bottom:20px;letter-spacing:-0.02em;line-height:1.2;">People who run toward change.</p>
