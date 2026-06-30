@@ -136,7 +136,7 @@ nav {
 /* ── HERO ── */
 .hero {
   background: var(--charcoal);
-  padding: 54px 48px 50px;
+  padding: 54px 0 50px;
   position: relative;
   overflow: hidden;
   min-height: 560px;
@@ -144,19 +144,19 @@ nav {
 /* hero flag bg — removed, clean charcoal */
 .hero-flag-bg { display: none; }
 .hero-overlay  { display: none; }
-/* flag sticker — breaks the grid, top-right, near headline */
+/* flag sticker — static, top-right of title */
 .hero-sticker {
   position: absolute;
-  top: 80px;
-  right: 48px;
-  width: 160px;
-  height: auto;
+  top: 0;
+  right: 20px;
+  width: auto;
+  height: 170px;
   opacity: 0.92;
   pointer-events: none;
   z-index: 3;
   transform: rotate(4deg);
 }
-.hero-content { position: relative; z-index: 2; max-width: 680px; }
+.hero-content { position: relative; z-index: 2; max-width: 780px; }
 .hero-eyebrow {
   font-family: var(--f-mono);
   font-size: 12px;
@@ -165,6 +165,8 @@ nav {
   color: var(--poppy);
   text-transform: uppercase;
   margin-bottom: 24px;
+  animation: fadeUp 0.6s ease both;
+  animation-delay: 0.1s;
 }
 .hero-title {
   font-family: var(--f-headline);
@@ -174,6 +176,8 @@ nav {
   letter-spacing: -0.025em;
   color: var(--white);
   margin-bottom: 28px;
+  animation: dropIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.25s;
 }
 .hero-title em {
   font-style: italic;
@@ -184,9 +188,11 @@ nav {
   font-size: 18px;
   font-weight: 400;
   color: rgba(255,255,255,0.68);
-  max-width: 520px;
+  max-width: 680px;
   line-height: 1.65;
   margin-bottom: 48px;
+  animation: fadeUp 0.7s ease both;
+  animation-delay: 0.6s;
 }
 /* ── Pills — brand spec p.113: filled, capsule, fixed proportions, white/charcoal text ── */
 /* On dark (charcoal) backgrounds: use White, Zest, Bloom filled pills */
@@ -195,6 +201,12 @@ nav {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 48px;
+  animation: fadeUp 0.7s ease both;
+  animation-delay: 0.85s;
+}
+.hero-actions {
+  animation: fadeUp 0.7s ease both;
+  animation-delay: 1s;
 }
 .hero-pill {
   border-radius: 100px;
@@ -277,6 +289,34 @@ nav {
 }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+.hero-title-em {
+  font-style: italic;
+  color: var(--poppy);
+}
+
+/* ── Scroll-triggered fade-up ── */
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.scroll-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Hero title drop-in ── */
+@keyframes dropIn {
+  0%   { opacity: 0; transform: translateY(-32px); }
+  60%  { opacity: 1; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
 /* ── STATS ── */
 .stats-grid {
   display: grid;
@@ -342,26 +382,13 @@ section { padding: 52px 0; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2px;
+  margin-top: 40px;
 }
 .why-card {
   background: var(--white);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-/* image area — prominent, top of card */
-.why-img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: var(--mist);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.why-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 /* card body — text + feature links */
 .why-body {
@@ -594,7 +621,7 @@ section { padding: 52px 0; }
 .cta-sub {
   font-size: 18px;
   color: rgba(255,255,255,0.72);
-  max-width: 440px;
+  max-width: 640px;
   margin: 0 auto 48px;
   line-height: 1.65;
 }
@@ -662,102 +689,71 @@ footer {
 <section class="hero">
   <div class="hero-flag-bg" aria-hidden="true"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
-  <!-- flag sticker — breaks the grid near the headline, top-right -->
-  <img class="hero-sticker" src="assets/flag/Flag-Sticker.png" alt="" aria-hidden="true">
+  <div class="container">
   <div class="hero-content">
     <p class="hero-eyebrow">Senior AI Engineer · Engineering · Boston, MA</p>
-    <h1 class="hero-title">Build the AI<br>that <em>runs itself.</em></h1>
-    <p class="hero-sub">Most engineers work with AI tools. Here you build the infrastructure that makes AI act autonomously — at the scale of 167K+ businesses and billions of consumer interactions.</p>
+    <!-- sticker positioned top-right of the title block -->
+    <div style="position:relative;">
+      <img class="hero-sticker" src="assets/flag/Flag-Sticker.png" alt="" aria-hidden="true">
+      <h1 class="hero-title">Build the AI<br>that <em class="hero-title-em">runs itself.</em></h1>
+    </div>
+    <p class="hero-sub">Most engineers work with AI tools. Here you build the infrastructure that makes AI act autonomously — at the scale of 196K+ businesses and billions of consumer interactions.</p>
     <!-- Brand pills per spec p.113: filled capsule, White/Zest/Bloom on dark bg -->
     <div class="hero-pills">
-      <span class="hero-pill">📍 Boston, MA</span>
       <span class="hero-pill">$148K – $222K base</span>
       <span class="hero-pill">Backend-heavy · AI/ML</span>
-      <span class="hero-pill">Senior level (L2)</span>
     </div>
     <div class="hero-actions">
       <a href="https://www.klaviyo.com/careers/jobs/7502768003?gh_jid=7502768003" class="btn-poppy" target="_blank">Apply now</a>
       <a href="#role" class="btn-ghost">See the full role ↓</a>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- TICKER — short labels only, flag mark at cap height, White on Poppy -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">167K+ customers</span></span>
-    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Billions of consumer profiles</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">196K+ customers worldwide</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">7.3B customer profiles</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">1.6B avg API calls daily</span></span>
     <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Agentic AI at scale</span></span>
     <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Backend AI engineering</span></span>
-    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Boston, MA</span></span>
-    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">$148K – $222K base</span></span>
     <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Senior AI Engineer</span></span>
     <!-- duplicate for seamless loop -->
-    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">167K+ customers</span></span>
-    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Billions of consumer profiles</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">196K+ customers worldwide</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">7.3B customer profiles</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">1.6B avg API calls daily</span></span>
     <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Agentic AI at scale</span></span>
     <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Backend AI engineering</span></span>
-    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Boston, MA</span></span>
-    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">$148K – $222K base</span></span>
     <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Senior AI Engineer</span></span>
   </div>
 </div>
 
-<!-- STATS -->
-<div class="stats-grid">
-  <div class="stat-card">
-    <div class="stat-number">167K+</div>
-    <div class="stat-label">Customers worldwide</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-number">100B+</div>
-    <div class="stat-label">Messages sent annually</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-number">$1B+</div>
-    <div class="stat-label">Annual recurring revenue</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-number">$222K</div>
-    <div class="stat-label">Max base salary</div>
-  </div>
-</div>
 
 <!-- WHY KLAVIYO — 2×2 card layout matching klaviyo.com platform section -->
 <section class="why">
   <div class="container">
     <p class="section-eyebrow">Why Klaviyo</p>
-    <h2 class="section-title">You're not joining a team<br>building AI features. You're<br>building the AI that <em style="font-style:italic;color:var(--poppy)">acts.</em></h2>
-    <p class="section-sub">The clearest agent-builder teams at Klaviyo right now are Service, AI Platform, and New Products. This role sits in that epicenter.</p>
-  </div>
+    <h2 class="section-title">Agentic AI and automation,<br><em style="font-style:italic;color:var(--poppy);">at scale,</em> for 196K+ businesses.</h2>
   <div class="why-grid">
 
     <div class="why-card">
-      <div class="why-img">
-        <img src="https://drive.google.com/uc?export=view&id=1n0E-QofNycHmk3L2H3FOXKIS8KZ9x4kc" alt="Training data scale">
-      </div>
       <div class="why-body">
         <h3 class="why-title">Training data no one else has</h3>
         <p class="why-desc">Billions of consumer profiles. Hundreds of billions of customer messages and the conversion data that follows. Your models learn from real outcomes at a scale most AI engineers never get close to.</p>
         <ul class="why-links">
-          <li>167K+ customers</li>
-          <li>Billions of profiles</li>
-          <li>Real conversion signal</li>
+          <li>196K+ customers</li>
           <li>Production AI at scale</li>
         </ul>
       </div>
     </div>
 
     <div class="why-card">
-      <div class="why-img">
-        <img src="https://drive.google.com/uc?export=view&id=11fFyU8VG_ouoSPK_wwC3tFnIJeOhvq9w" alt="Engineering leveling">
-      </div>
       <div class="why-body">
         <h3 class="why-title">Leveled on engineering scope, not AI years</h3>
         <p class="why-desc">We look at production ownership, system complexity, and what you've built that actually ran. Direct AI experience matters — it's not the only thing. The interview process is designed to understand your mix.</p>
         <ul class="why-links">
-          <li>L2 Senior level</li>
-          <li>Backend-first profile</li>
           <li>Scope-based leveling</li>
           <li>AI system design interview</li>
         </ul>
@@ -765,37 +761,116 @@ footer {
     </div>
 
     <div class="why-card">
-      <div class="why-img">
-        <img src="https://drive.google.com/uc?export=view&id=17MjGN0QwLy5thA4VrlNOo7Lf0Z5_ffKO" alt="Agentic AI">
-      </div>
       <div class="why-body">
         <h3 class="why-title">Software that runs itself</h3>
         <p class="why-desc">We're building toward AI that can optimize itself based on outcomes — not just AI features on top of existing products. You'll shape the agentic architecture that makes autonomous marketing and customer experiences possible.</p>
         <ul class="why-links">
-          <li>Agent Platform team</li>
-          <li>Service AI team</li>
-          <li>New Products team</li>
           <li>Agentic architecture</li>
+          <li>Multiple orgs hiring</li>
         </ul>
       </div>
     </div>
 
     <div class="why-card">
-      <div class="why-img">
-        <img src="https://drive.google.com/uc?export=view&id=1iDloYroU8eaPHeO_pGC5oOLiQbCvSKMr" alt="Impact at scale">
-      </div>
       <div class="why-body">
         <h3 class="why-title">Impact at real scale</h3>
-        <p class="why-desc">167K+ customers means every backend decision has a real blast radius. The infrastructure you build here touches more businesses than most engineers reach in a full career.</p>
+        <p class="why-desc">196K+ customers means every backend decision has a real blast radius. The infrastructure you build here touches more businesses than most engineers reach in a full career.</p>
         <ul class="why-links">
-          <li>$148K – $222K base</li>
-          <li>Equity included</li>
-          <li>Boston, MA</li>
-          <li>Up to 10% travel</li>
+          <li>Powering your favorite brands</li>
+          <li>350+ pre-built integrations</li>
         </ul>
       </div>
     </div>
 
+  </div>
+  </div>
+</section>
+
+<!-- AI-FIRST SECTION -->
+<section style="background:var(--charcoal);padding:52px 0;">
+  <div class="container">
+    <p class="section-eyebrow" style="color:var(--poppy);">Life at Klaviyo</p>
+    <h2 class="section-title" style="color:var(--white);max-width:640px;">The role of the engineer is changing.<br>Here, you're <em style="font-style:italic;color:var(--poppy);">leading that change.</em></h2>
+    <p style="font-size:17px;color:rgba(255,255,255,0.65);max-width:580px;line-height:1.7;margin-bottom:48px;">We're building for a future that's agentic and autonomous. That means engineers here move beyond just writing code — they focus on problem framing, system design, and orchestrating how everything comes together. AI accelerates the work, but decision-making still sits with the human.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+
+      <!-- Quote 1 -->
+      <div style="background:#262729;padding:40px 36px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+                    <p style="font-family:var(--f-headline);font-size:22px;font-weight:400;color:var(--white);line-height:1.45;letter-spacing:-0.01em;">&ldquo;The amount of AI we use here is <em style="font-style:normal;color:var(--zest);">honestly fun.</em> You can just try things, test tools, see what works.&rdquo;</p>
+        </div>
+        <div style="margin-top:32px;display:flex;align-items:center;gap:16px;border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;">
+          <img src="assets/anthony-kelley.jpg" alt="Anthony Kelley" style="width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;">
+          <div>
+            <div style="font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--white);letter-spacing:0.08em;text-transform:uppercase;">Anthony Kelley</div>
+            <div style="font-family:var(--f-mono);font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.06em;text-transform:uppercase;margin-top:3px;">Core Infrastructure Leader</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote 2 -->
+      <div style="background:#262729;padding:40px 36px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+                    <p style="font-family:var(--f-headline);font-size:22px;font-weight:400;color:var(--white);line-height:1.45;letter-spacing:-0.01em;">&ldquo;The value isn't in typing code. It's in <em style="font-style:normal;color:var(--zest);">framing the problem, designing the system,</em> and <em style="font-style:normal;color:var(--zest);">orchestrating</em> how it all comes together.&rdquo;</p>
+        </div>
+        <div style="margin-top:32px;display:flex;align-items:center;gap:16px;border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;">
+          <img src="assets/chris-chiodo.jpg" alt="Chris Chiodo" style="width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;">
+          <div>
+            <div style="font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--white);letter-spacing:0.08em;text-transform:uppercase;">Chris Chiodo</div>
+            <div style="font-family:var(--f-mono);font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.06em;text-transform:uppercase;margin-top:3px;">VP, Engineering</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AI-first pillars -->
+    <div style="margin-top:2px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+      <div style="background:#1a1b1d;padding:28px 32px;border-top:3px solid var(--poppy);">
+        <p style="font-family:var(--f-mono);font-size:11px;color:var(--poppy);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">Test tools</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.65;">Try anything. See what works. AI experimentation is expected, not exceptional.</p>
+      </div>
+      <div style="background:#1a1b1d;padding:28px 32px;border-top:3px solid var(--poppy);">
+        <p style="font-family:var(--f-mono);font-size:11px;color:var(--poppy);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">Learn quickly</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.65;">This field moves faster than any playbook. Curiosity isn't a nice-to-have — it's the job.</p>
+      </div>
+      <div style="background:#1a1b1d;padding:28px 32px;border-top:3px solid var(--poppy);">
+        <p style="font-family:var(--f-mono);font-size:11px;color:var(--poppy);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">Rethink how work gets done</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.65;">AI-first does not mean stepping back. Engineers still need judgment, ownership, and systems thinking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT DIFFERENT / EVP SECTION -->
+<section style="background:var(--mist);padding:52px 0;">
+  <div class="container">
+    <p class="section-eyebrow">Culture</p>
+    <h2 class="section-title">Built <em style="font-style:italic;">different.</em></h2>
+    <p style="font-size:17px;color:rgba(29,30,32,0.6);max-width:520px;line-height:1.7;margin-bottom:48px;">This isn't for everyone. Here's who thrives.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+
+      <div style="background:var(--white);padding:36px;">
+        <p style="font-family:var(--f-headline);font-size:26px;font-weight:600;color:var(--charcoal);margin-bottom:20px;letter-spacing:-0.02em;line-height:1.2;">People who run toward change.</p>
+        <p style="font-size:17px;color:rgba(29,30,32,0.78);line-height:1.6;">&ldquo;If you just want to fit into the machine as another cog and go home — Klaviyo's not the place for you. <em style="font-style:normal;font-weight:600;color:var(--poppy);">You need to see change as an opportunity.</em>&rdquo;</p>
+      </div>
+
+      <div style="background:var(--white);padding:36px;">
+        <p style="font-family:var(--f-headline);font-size:26px;font-weight:600;color:var(--charcoal);margin-bottom:20px;letter-spacing:-0.02em;line-height:1.2;">High agency is expected.</p>
+        <p style="font-size:17px;color:rgba(29,30,32,0.78);line-height:1.6;">&ldquo;We really favor people with high amounts of <em style="font-style:normal;font-weight:600;color:var(--poppy);">accountability</em> and willingness to <em style="font-style:normal;font-weight:600;color:var(--poppy);">work autonomously.</em>&rdquo;</p>
+      </div>
+
+      <div style="background:var(--white);padding:36px;">
+        <p style="font-family:var(--f-headline);font-size:26px;font-weight:600;color:var(--charcoal);margin-bottom:20px;letter-spacing:-0.02em;line-height:1.2;">Ownership means end-to-end responsibility.</p>
+        <p style="font-size:17px;color:rgba(29,30,32,0.78);line-height:1.6;">&ldquo;When you build something, you <em style="font-style:normal;font-weight:600;color:var(--poppy);">own it,</em> you <em style="font-style:normal;font-weight:600;color:var(--poppy);">deploy it,</em> you <em style="font-style:normal;font-weight:600;color:var(--poppy);">operate it.</em>&rdquo;</p>
+      </div>
+
+      <div style="background:var(--white);padding:36px;">
+        <p style="font-family:var(--f-headline);font-size:26px;font-weight:600;color:var(--charcoal);margin-bottom:20px;letter-spacing:-0.02em;line-height:1.2;">This is for builders, not passengers.</p>
+        <p style="font-size:17px;color:rgba(29,30,32,0.78);line-height:1.6;">&ldquo;If you see an important problem that needs solving, generally <em style="font-style:normal;font-weight:600;color:var(--poppy);">you can go solve it.</em> That level of freedom is somewhat unique here.&rdquo;</p>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -882,7 +957,7 @@ footer {
 <section class="quals" id="quals">
   <div class="container">
     <p class="section-eyebrow">Who you are</p>
-    <h2 class="section-title">This is primarily a backend<br>role. Here's what that means.</h2>
+    <h2 class="section-title">The teammate we're looking for.</h2>
     <div class="quals-grid">
       <div class="quals-card">
         <div class="qcard-head">The core profile <span class="badge badge-req">Required</span></div>
@@ -907,8 +982,8 @@ footer {
           <li>You stay current in a field that moves faster than most teams can keep up with</li>
         </ul>
         <div class="quals-footnote">
-          <strong>Hard to find candidates who have both heavy AI systems experience and heavy-duty backend engineering?</strong>
-          We know. So do we. We use the interview to understand your mix and calibrate accordingly — not to filter on a checklist.
+          <strong>Not a perfect match? Apply anyway.</strong>
+          If this role sounds like you but you don't tick every box — shoot your shot. We care more about your trajectory and how you think than whether you hit every line item.
         </div>
       </div>
     </div>
@@ -920,10 +995,9 @@ footer {
   <div class="cta-flag" aria-hidden="true"></div>
   <div class="cta-scrim" aria-hidden="true"></div>
   <div class="cta-content">
-    <p class="cta-eyebrow">Ready?</p>
-    <h2 class="cta-title">You've got this.<br>We've got the scale.</h2>
-    <p class="cta-sub">Join the team building agentic systems that actually run — on the richest B2C dataset in the world, with people who take ownership seriously.</p>
-    <a href="https://www.klaviyo.com/careers/jobs/7502768003?gh_jid=7502768003" class="btn-white" target="_blank">Apply for this role</a>
+    <h2 class="cta-title">You got what it takes.<br>We got the scale.</h2>
+    <p class="cta-sub">Join the team building agentic systems at scale — with people who are just as ambitious as you, and who don't do "good enough."</p>
+    <a href="https://www.klaviyo.com/careers/jobs/7502768003?gh_jid=7502768003" class="btn-white" target="_blank">Apply now</a>
   </div>
 </div>
 
@@ -939,6 +1013,25 @@ footer {
   </div>
   <p class="footer-copy">© 2026 Klaviyo, Inc.</p>
 </footer>
+
+
+<script>
+  // Only animate section eyebrows and titles on scroll
+  document.querySelectorAll('.section-eyebrow, .section-title').forEach((el, i) => {
+    el.classList.add('scroll-fade');
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
