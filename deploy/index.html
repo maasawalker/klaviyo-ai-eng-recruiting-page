@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior AI Engineer — Klaviyo Careers</title>
+<!-- v3: real flag prominence, flag sticker, brand pills, flag-mark ticker, EB copy -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Real Klaviyo brand fonts ── */
+@font-face {
+  font-family: 'Klaviyo Degular';
+  src: url('assets/fonts/KlaviyoDegular/KlaviyoDegular-Light.otf') format('opentype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Klaviyo Degular';
+  src: url('assets/fonts/KlaviyoDegular/KlaviyoDegular-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Klaviyo Degular';
+  src: url('assets/fonts/KlaviyoDegular/KlaviyoDegular-Italic.otf') format('opentype');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Klaviyo Degular';
+  src: url('assets/fonts/KlaviyoDegular/KlaviyoDegular-Medium.otf') format('opentype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Klaviyo Degular';
+  src: url('assets/fonts/KlaviyoDegular/KlaviyoDegular-MediumItalic.otf') format('opentype');
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Klaviyo Degular';
+  src: url('assets/fonts/KlaviyoDegular/KlaviyoDegular-Semibold.otf') format('opentype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('assets/fonts/InstrumentSans/InstrumentSans-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('assets/fonts/InstrumentSans/InstrumentSans-Medium.ttf') format('truetype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('assets/fonts/InstrumentSans/InstrumentSans-SemiBold.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('assets/fonts/InstrumentSans/InstrumentSans-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ── Brand tokens ── */
+:root {
+  --poppy:    #FF4B32;
+  --charcoal: #1D1E20;
+  --white:    #FFFFFF;
+  --mist:     #F3F2F1;
+  --fig:      #590B2C;
+  --wave:     #3A3AFF;
+  --zest:     #DEFF00;
+  --bloom:    #FAADFF;
+
+  --f-headline: 'Klaviyo Degular', 'Plus Jakarta Sans', sans-serif;
+  --f-body:     'Instrument Sans', sans-serif;
+  --f-mono:     'DM Mono', monospace;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body);
+  background: var(--white);
+  color: var(--charcoal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ── Utilities ── */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+
+/* ── NAV ── */
+nav {
+  background: var(--charcoal);
+  padding: 0 48px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 28px; width: auto; }
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-link {
+  font-family: var(--f-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.15s;
+  text-decoration: none;
+}
+.nav-link:hover {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.nav-cta {
+  background: var(--poppy);
+  color: var(--white);
+  font-family: var(--f-body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 2px;
+  transition: opacity 0.15s;
+  display: inline-block;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* ── HERO ── */
+.hero {
+  background: var(--charcoal);
+  padding: 54px 48px 50px;
+  position: relative;
+  overflow: hidden;
+  min-height: 560px;
+}
+/* hero flag bg — removed, clean charcoal */
+.hero-flag-bg { display: none; }
+.hero-overlay  { display: none; }
+/* flag sticker — breaks the grid, top-right, near headline */
+.hero-sticker {
+  position: absolute;
+  top: 80px;
+  right: 48px;
+  width: 160px;
+  height: auto;
+  opacity: 0.92;
+  pointer-events: none;
+  z-index: 3;
+  transform: rotate(4deg);
+}
+.hero-content { position: relative; z-index: 2; max-width: 680px; }
+.hero-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--poppy);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-family: var(--f-headline);
+  font-weight: 400;
+  font-size: clamp(48px, 6.5vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--poppy);
+}
+.hero-sub {
+  font-family: var(--f-body);
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.68);
+  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 48px;
+}
+/* ── Pills — brand spec p.113: filled, capsule, fixed proportions, white/charcoal text ── */
+/* On dark (charcoal) backgrounds: use White, Zest, Bloom filled pills */
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+.hero-pill {
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-family: var(--f-body);
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+/* Single pill color — Zest (#DEFF00) on dark bg, Charcoal text, per brand spec */
+.hero-pill { background: var(--zest); color: var(--charcoal); }
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-poppy {
+  background: var(--poppy);
+  color: var(--white);
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 9px 20px;
+  border-radius: 2px;
+  transition: opacity 0.15s;
+  display: inline-block;
+}
+.btn-poppy:hover { opacity: 0.88; }
+/* ghost links — no fill/border, underline on hover (like nav "Log in") */
+.btn-ghost {
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  display: inline-block;
+  padding: 9px 0;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.btn-ghost:hover {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── TICKER — brand spec: White on Poppy, flag mark = same height as cap height ── */
+.ticker-wrap {
+  background: var(--poppy);
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 32s linear infinite;
+  height: 40px; /* ~5% of typical 800px viewport */
+  align-items: center;
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.ticker-text {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 20px;
+  white-space: nowrap;
+}
+/* Flag mark = same height as cap height of the text (12px font → ~10px mark) */
+.ticker-flag-mark {
+  display: inline-block;
+  flex-shrink: 0;
+  height: 12px; /* matches cap height of ticker font */
+  width: auto;
+  opacity: 0.85;
+}
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── STATS ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 2px solid var(--mist);
+}
+.stat-card {
+  padding: 28px 36px;
+  text-align: center;
+  border-right: 1px solid var(--mist);
+  background: var(--white);
+}
+.stat-card:last-child { border-right: none; }
+.stat-number {
+  font-family: var(--f-headline);
+  font-size: 54px;
+  font-weight: 400;
+  color: var(--poppy);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.stat-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(29,30,32,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+/* ── SECTION BASE ── */
+section { padding: 52px 0; }
+.section-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--poppy);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.section-title {
+  font-family: var(--f-headline);
+  font-weight: 400;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+  margin-bottom: 18px;
+}
+.section-sub {
+  font-size: 18px;
+  color: rgba(29,30,32,0.56);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 60px;
+}
+
+/* ── WHY — matches klaviyo.com platform cards: image-forward 2×2 grid ── */
+.why { background: var(--mist); }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+.why-card {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* image area — prominent, top of card */
+.why-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--mist);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.why-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* card body — text + feature links */
+.why-body {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.why-title {
+  font-family: var(--f-headline);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.why-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(29,30,32,0.62);
+  margin-bottom: 24px;
+  flex: 1;
+}
+.why-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 0;
+  border-top: 1px solid var(--mist);
+  padding-top: 20px;
+}
+.why-links li {
+  width: 50%;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--charcoal);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+}
+.why-links li::before {
+  content: '→';
+  color: var(--poppy);
+  font-size: 12px;
+}
+
+/* ── ROLE ── */
+.role { background: var(--charcoal); }
+.role .section-title { color: var(--white); }
+.role-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 80px;
+  align-items: start;
+}
+.role-section { margin-bottom: 28px; }
+.role-section-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--poppy);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.role-list { list-style: none; }
+.role-list li {
+  padding: 14px 0 14px 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.78);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+}
+.role-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 24px;
+  width: 6px; height: 6px;
+  background: var(--poppy);
+  border-radius: 50%;
+}
+/* sticky sidebar */
+.role-sidebar { position: sticky; top: 84px; }
+.sidebar-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.sl { font-family: var(--f-mono); font-size: 10px; font-weight: 400; letter-spacing: 0.08em; color: rgba(255,255,255,0.32); text-transform: uppercase; margin-bottom: 6px; margin-top: 18px; }
+.sl:first-child { margin-top: 0; }
+.sv { font-size: 15px; font-weight: 500; color: var(--white); }
+.salary { font-family: var(--f-headline); font-size: 24px; font-weight: 400; color: var(--white); line-height: 1.2; letter-spacing: -0.01em; }
+.salary-note { font-size: 12px; color: rgba(255,255,255,0.38); margin-top: 6px; line-height: 1.6; }
+.sidebar-apply {
+  background: var(--poppy);
+  color: var(--white);
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px;
+  border-radius: 2px;
+  display: block;
+  text-align: center;
+  transition: opacity 0.15s;
+}
+.sidebar-apply:hover { opacity: 0.88; }
+
+/* ── STACK ── */
+.stack { background: var(--mist); }
+.stack .section-title { color: var(--charcoal); }
+.stack-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+.tag {
+  background: var(--white);
+  border: 1px solid rgba(29,30,32,0.1);
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--charcoal);
+  transition: all 0.15s;
+  cursor: default;
+}
+.tag:hover { background: var(--charcoal); color: var(--white); border-color: var(--charcoal); }
+.tag.hl { background: var(--charcoal); color: var(--white); border-color: var(--charcoal); }
+
+/* ── QUALS ── */
+.quals { background: var(--white); }
+.quals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--mist); margin-top: 60px; }
+.quals-card { background: var(--white); padding: 28px 28px; }
+.qcard-head {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--f-body);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 28px;
+}
+.badge {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+.badge-req { background: var(--charcoal); color: var(--white); }
+.badge-opt { border: 1px solid rgba(29,30,32,0.18); color: rgba(29,30,32,0.42); }
+.qlist { list-style: none; }
+.qlist li {
+  padding: 12px 0 12px 22px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(29,30,32,0.76);
+  border-bottom: 1px solid var(--mist);
+  position: relative;
+}
+.qlist li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 21px;
+  width: 6px; height: 6px;
+  background: var(--poppy);
+  border-radius: 50%;
+}
+.quals-footnote {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--mist);
+  font-size: 14px;
+  color: rgba(29,30,32,0.48);
+  line-height: 1.7;
+}
+.quals-footnote strong { color: var(--charcoal); display: block; font-size: 15px; margin-bottom: 5px; }
+
+/* ── CTA — flag IS the full background, text centered over texture ── */
+.cta-wrap {
+  background: var(--poppy); /* fallback while image loads */
+  padding: 60px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+/* Full-bleed flag background — covers entire section */
+.cta-flag {
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/flag/Flag-Background-03.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  pointer-events: none;
+}
+/* Subtle scrim so white text is fully legible — light touch only */
+.cta-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(29,30,32,0.18);
+  pointer-events: none;
+}
+.cta-content { position: relative; z-index: 1; }
+.cta-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.cta-title {
+  font-family: var(--f-headline);
+  font-weight: 400;
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 1.07;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  max-width: 620px;
+  margin: 0 auto 18px;
+}
+.cta-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.72);
+  max-width: 440px;
+  margin: 0 auto 48px;
+  line-height: 1.65;
+}
+.btn-white {
+  background: var(--white);
+  color: var(--charcoal);
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 2px;
+  display: inline-block;
+  transition: opacity 0.15s;
+}
+.btn-white:hover { opacity: 0.9; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--charcoal);
+  padding: 22px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-logo img { height: 24px; width: auto; }
+.footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.38); font-weight: 500; transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.22); }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: 1fr; }
+  .role-layout { grid-template-columns: 1fr; }
+  .role-sidebar { position: static; }
+  .quals-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .container, nav, .hero, .cta-wrap, footer { padding-left: 24px; padding-right: 24px; }
+  .why-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  section { padding: 40px 0; }
+  .hero { padding: 80px 24px 72px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://www.klaviyo.com/careers" class="nav-logo" aria-label="Klaviyo">
+    <img src="assets/logos/Klaviyo-Logo-White.svg" alt="Klaviyo">
+  </a>
+  <div class="nav-right">
+    <a href="#role" class="nav-link">The role</a>
+    <a href="#quals" class="nav-link">Qualifications</a>
+    <a href="#apply" class="nav-cta">Apply now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-flag-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <!-- flag sticker — breaks the grid near the headline, top-right -->
+  <img class="hero-sticker" src="assets/flag/Flag-Sticker.png" alt="" aria-hidden="true">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Senior AI Engineer · Engineering · Boston, MA</p>
+    <h1 class="hero-title">Build the AI<br>that <em>runs itself.</em></h1>
+    <p class="hero-sub">Most engineers work with AI tools. Here you build the infrastructure that makes AI act autonomously — at the scale of 167K+ businesses and billions of consumer interactions.</p>
+    <!-- Brand pills per spec p.113: filled capsule, White/Zest/Bloom on dark bg -->
+    <div class="hero-pills">
+      <span class="hero-pill">📍 Boston, MA</span>
+      <span class="hero-pill">$148K – $222K base</span>
+      <span class="hero-pill">Backend-heavy · AI/ML</span>
+      <span class="hero-pill">Senior level (L2)</span>
+    </div>
+    <div class="hero-actions">
+      <a href="https://www.klaviyo.com/careers/jobs/7502768003?gh_jid=7502768003" class="btn-poppy" target="_blank">Apply now</a>
+      <a href="#role" class="btn-ghost">See the full role ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER — short labels only, flag mark at cap height, White on Poppy -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">167K+ customers</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Billions of consumer profiles</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Agentic AI at scale</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Backend AI engineering</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Boston, MA</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">$148K – $222K base</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Senior AI Engineer</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">167K+ customers</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Billions of consumer profiles</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Agentic AI at scale</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Backend AI engineering</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Boston, MA</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">$148K – $222K base</span></span>
+    <span class="ticker-item"><img class="ticker-flag-mark" src="assets/flag/Flag-Mark-White.png" alt=""><span class="ticker-text">Senior AI Engineer</span></span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-number">167K+</div>
+    <div class="stat-label">Customers worldwide</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">100B+</div>
+    <div class="stat-label">Messages sent annually</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">$1B+</div>
+    <div class="stat-label">Annual recurring revenue</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">$222K</div>
+    <div class="stat-label">Max base salary</div>
+  </div>
+</div>
+
+<!-- WHY KLAVIYO — 2×2 card layout matching klaviyo.com platform section -->
+<section class="why">
+  <div class="container">
+    <p class="section-eyebrow">Why Klaviyo</p>
+    <h2 class="section-title">You're not joining a team<br>building AI features. You're<br>building the AI that <em style="font-style:italic;color:var(--poppy)">acts.</em></h2>
+    <p class="section-sub">The clearest agent-builder teams at Klaviyo right now are Service, AI Platform, and New Products. This role sits in that epicenter.</p>
+  </div>
+  <div class="why-grid">
+
+    <div class="why-card">
+      <div class="why-img">
+        <img src="https://drive.google.com/uc?export=view&id=1n0E-QofNycHmk3L2H3FOXKIS8KZ9x4kc" alt="Training data scale">
+      </div>
+      <div class="why-body">
+        <h3 class="why-title">Training data no one else has</h3>
+        <p class="why-desc">Billions of consumer profiles. Hundreds of billions of customer messages and the conversion data that follows. Your models learn from real outcomes at a scale most AI engineers never get close to.</p>
+        <ul class="why-links">
+          <li>167K+ customers</li>
+          <li>Billions of profiles</li>
+          <li>Real conversion signal</li>
+          <li>Production AI at scale</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-img">
+        <img src="https://drive.google.com/uc?export=view&id=11fFyU8VG_ouoSPK_wwC3tFnIJeOhvq9w" alt="Engineering leveling">
+      </div>
+      <div class="why-body">
+        <h3 class="why-title">Leveled on engineering scope, not AI years</h3>
+        <p class="why-desc">We look at production ownership, system complexity, and what you've built that actually ran. Direct AI experience matters — it's not the only thing. The interview process is designed to understand your mix.</p>
+        <ul class="why-links">
+          <li>L2 Senior level</li>
+          <li>Backend-first profile</li>
+          <li>Scope-based leveling</li>
+          <li>AI system design interview</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-img">
+        <img src="https://drive.google.com/uc?export=view&id=17MjGN0QwLy5thA4VrlNOo7Lf0Z5_ffKO" alt="Agentic AI">
+      </div>
+      <div class="why-body">
+        <h3 class="why-title">Software that runs itself</h3>
+        <p class="why-desc">We're building toward AI that can optimize itself based on outcomes — not just AI features on top of existing products. You'll shape the agentic architecture that makes autonomous marketing and customer experiences possible.</p>
+        <ul class="why-links">
+          <li>Agent Platform team</li>
+          <li>Service AI team</li>
+          <li>New Products team</li>
+          <li>Agentic architecture</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-img">
+        <img src="https://drive.google.com/uc?export=view&id=1iDloYroU8eaPHeO_pGC5oOLiQbCvSKMr" alt="Impact at scale">
+      </div>
+      <div class="why-body">
+        <h3 class="why-title">Impact at real scale</h3>
+        <p class="why-desc">167K+ customers means every backend decision has a real blast radius. The infrastructure you build here touches more businesses than most engineers reach in a full career.</p>
+        <ul class="why-links">
+          <li>$148K – $222K base</li>
+          <li>Equity included</li>
+          <li>Boston, MA</li>
+          <li>Up to 10% travel</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROLE -->
+<section class="role" id="role">
+  <div class="container">
+    <p class="section-eyebrow">The role</p>
+    <h2 class="section-title">Senior AI Engineer</h2>
+    <div class="role-layout">
+      <div>
+        <div class="role-section">
+          <p class="role-section-label">What you're actually building</p>
+          <ul class="role-list">
+            <li>Backend systems that power agentic AI products at scale — not UI, not tooling for humans</li>
+            <li>Data pipelines that feed ML models the right training signal from billions of real customer interactions</li>
+            <li>Model-serving infrastructure that makes AI reliable in production, not just in notebooks</li>
+            <li>The scaffolding for Klaviyo's agentic architecture — the shared patterns other teams will build on</li>
+            <li>A culture of ownership: you ship, you learn, you raise the bar</li>
+          </ul>
+        </div>
+        <div class="role-section">
+          <p class="role-section-label">How you'll spend your time</p>
+          <ul class="role-list">
+            <li>Designing async processing pipelines and distributed systems — Kafka, Celery, SQS, Redis at scale</li>
+            <li>Building and shipping generative AI and agentic applications into production environments</li>
+            <li>Creating evals — human and automated — that tell you when your AI is actually working</li>
+            <li>Collaborating directly with PMs, ML engineers, and data scientists on customer-facing products</li>
+            <li>Influencing architecture decisions on AWS and Kubernetes — not just executing someone else's plan</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role-sidebar">
+        <div class="sidebar-card">
+          <div class="sl">Base pay range (US)</div>
+          <div class="salary">$148,000 –<br>$222,000</div>
+          <div class="salary-note">Plus equity, annual cash bonus, and comprehensive benefits</div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sl">Team</div>
+          <div class="sv">Engineering</div>
+          <div class="sl">Location</div>
+          <div class="sv">Boston, MA</div>
+          <div class="sl">Travel</div>
+          <div class="sv">Up to 10%</div>
+        </div>
+        <a href="https://www.klaviyo.com/careers/jobs/7502768003?gh_jid=7502768003" class="sidebar-apply" target="_blank">Apply for this role →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="stack">
+  <div class="container">
+    <p class="section-eyebrow">The tech</p>
+    <h2 class="section-title">What you'll work with</h2>
+    <p class="section-sub">A backend-heavy stack with real distributed systems work — and room to influence architecture decisions from the start.</p>
+    <div class="stack-tags">
+      <span class="tag hl">Python</span>
+      <span class="tag hl">FastAPI</span>
+      <span class="tag hl">Django</span>
+      <span class="tag">Apache Spark</span>
+      <span class="tag">Hadoop</span>
+      <span class="tag">Celery</span>
+      <span class="tag">Kafka</span>
+      <span class="tag">SQS</span>
+      <span class="tag">RabbitMQ</span>
+      <span class="tag">Redis</span>
+      <span class="tag">SQLAlchemy</span>
+      <span class="tag">Alembic</span>
+      <span class="tag">AWS</span>
+      <span class="tag">Kubernetes</span>
+      <span class="tag hl">Generative AI</span>
+      <span class="tag hl">Agentic AI</span>
+      <span class="tag">Prompt Engineering</span>
+      <span class="tag">Fine-tuning</span>
+      <span class="tag">Model Evals</span>
+      <span class="tag">Reinforcement Learning</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFICATIONS -->
+<section class="quals" id="quals">
+  <div class="container">
+    <p class="section-eyebrow">Who you are</p>
+    <h2 class="section-title">This is primarily a backend<br>role. Here's what that means.</h2>
+    <div class="quals-grid">
+      <div class="quals-card">
+        <div class="qcard-head">The core profile <span class="badge badge-req">Required</span></div>
+        <ul class="qlist">
+          <li>5+ years as a backend engineer with real production ownership — distributed systems, async pipelines, databases</li>
+          <li>You've shipped generative AI or agentic AI into production, not just prototyped it</li>
+          <li>You know how to evaluate AI — you've built evals, not just eyeballed outputs</li>
+          <li>Python fluency — FastAPI or Django in real codebases, not tutorials</li>
+          <li>Async processing at scale: Celery, Kafka, SQS, RabbitMQ, Redis</li>
+          <li>Big data tools: Spark and Hadoop (or similar) in anger</li>
+          <li>Cloud-native on AWS with Kubernetes — you've owned infra, not just used it</li>
+          <li>You're prompt engineering and fine-tuning, not just calling APIs</li>
+          <li>You operate autonomously. Ambiguity doesn't slow you down.</li>
+        </ul>
+      </div>
+      <div class="quals-card">
+        <div class="qcard-head">Adds a lot <span class="badge badge-opt">Bonus</span></div>
+        <ul class="qlist">
+          <li>You've trained and deployed ML models end-to-end in production</li>
+          <li>Reinforcement learning experience — especially reward modeling</li>
+          <li>You've done product-adjacent work: PRDs, customer calls, planning cycles</li>
+          <li>You stay current in a field that moves faster than most teams can keep up with</li>
+        </ul>
+        <div class="quals-footnote">
+          <strong>Hard to find candidates who have both heavy AI systems experience and heavy-duty backend engineering?</strong>
+          We know. So do we. We use the interview to understand your mix and calibrate accordingly — not to filter on a checklist.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap" id="apply">
+  <div class="cta-flag" aria-hidden="true"></div>
+  <div class="cta-scrim" aria-hidden="true"></div>
+  <div class="cta-content">
+    <p class="cta-eyebrow">Ready?</p>
+    <h2 class="cta-title">You've got this.<br>We've got the scale.</h2>
+    <p class="cta-sub">Join the team building agentic systems that actually run — on the richest B2C dataset in the world, with people who take ownership seriously.</p>
+    <a href="https://www.klaviyo.com/careers/jobs/7502768003?gh_jid=7502768003" class="btn-white" target="_blank">Apply for this role</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://www.klaviyo.com/careers" class="footer-logo" aria-label="Klaviyo">
+    <img src="assets/logos/Klaviyo-Logo-White.svg" alt="Klaviyo">
+  </a>
+  <div class="footer-links">
+    <a href="https://www.klaviyo.com/careers">All open roles</a>
+    <a href="https://www.klaviyo.com/about">About Klaviyo</a>
+    <a href="https://www.klaviyo.com/legal/job-applicant-privacy-notice">Privacy notice</a>
+  </div>
+  <p class="footer-copy">© 2026 Klaviyo, Inc.</p>
+</footer>
+
+</body>
+</html>
